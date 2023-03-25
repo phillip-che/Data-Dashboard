@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import axios from 'axios'
 import Header from './components/Header'
-import Card from './components/Card';
-import List from './components/List';
-const client_id = '10e56ae95aef49589010096d3d461aa5';
-const client_secret = '4198fc9fc9944725b44eac3fe1607a12';
+import Card from './components/Card'
+import List from './components/List'
+import NavBar from './components/NavBar'
+const CLIENT_ID = import.meta.env.VITE_APP_CLIENT_ID
+const CLIENT_SECRET = import.meta.env.VITE_APP_CLIENT_SECRET
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
     axios('https://accounts.spotify.com/api/token', {
       headers: {
         'Content-Type' : 'application/x-www-form-urlencoded',
-        'Authorization' : 'Basic ' + btoa(client_id + ':' + client_secret)      
+        'Authorization' : 'Basic ' + btoa(CLIENT_ID + ':' + CLIENT_SECRET)      
       },
       data: 'grant_type=client_credentials',
       method: 'POST'
@@ -43,6 +44,7 @@ function App() {
     <div className="App">
       <Header />
       <Card />
+      <NavBar />
       <List playlist={playlist} />
     </div>
   )
