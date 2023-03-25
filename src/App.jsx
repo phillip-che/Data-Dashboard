@@ -11,7 +11,7 @@ const CLIENT_SECRET = import.meta.env.VITE_APP_CLIENT_SECRET
 function App() {
 
   const [token, setToken] = useState('');
-  const [playlist, setPlaylist] = useState()
+  const [playlist, setPlaylist] = useState();
 
   useEffect(() => {
     axios('https://accounts.spotify.com/api/token', {
@@ -34,7 +34,7 @@ function App() {
         }
       }).then(playlistResponse => {
         // console.log(playlistResponse.data.items[2].track.name);
-        // console.log(playlistResponse.data.items);
+        console.log(playlistResponse.data.items);
         setPlaylist(playlistResponse.data.items);
       })
     });

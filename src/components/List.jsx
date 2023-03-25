@@ -1,4 +1,5 @@
 // lists playlist songs, album name, and duration
+import Song from "./Song"
 
 const List = ({playlist}) => {
 
@@ -6,7 +7,11 @@ const List = ({playlist}) => {
         <div>
             {playlist && playlist.map((song) => 
                 <li className="trackist" key={song.track.name}>
-                    {song.track.name}
+                    <Song 
+                    image={song.track.album.images[2].url}
+                    name={song.track.name} 
+                    album={song.track.album.name} 
+                    duration={song.track.duration_ms}/>
                 </li>
                 // console.log(song.track.name)
             )}
