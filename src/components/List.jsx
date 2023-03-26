@@ -6,12 +6,13 @@ const List = ({playlist}) => {
     return (
         <div>
             {playlist && playlist.map((song) => 
-                <li className="trackist" key={song.track.name}>
+                <li className="trackList" key={song.track.name}>
                     <Song 
                     image={song.track.album.images[2].url}
                     name={song.track.name} 
                     album={song.track.album.name} 
-                    duration={song.track.duration_ms}/>
+                    duration={song.track.duration_ms}
+                    />
                 </li>
                 // console.log(song.track.name)
             )}

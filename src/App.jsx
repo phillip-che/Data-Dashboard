@@ -11,39 +11,42 @@ const CLIENT_SECRET = import.meta.env.VITE_APP_CLIENT_SECRET
 function App() {
 
   const [token, setToken] = useState('');
-  const [playlist, setPlaylist] = useState();
+  const [playlist, setPlaylist] = useState(null);
 
   useEffect(() => {
-    axios('https://accounts.spotify.com/api/token', {
-      headers: {
-        'Content-Type' : 'application/x-www-form-urlencoded',
-        'Authorization' : 'Basic ' + btoa(CLIENT_ID + ':' + CLIENT_SECRET)      
-      },
-      data: 'grant_type=client_credentials',
-      method: 'POST'
-    }).then(tokenResponse => {
-      // console.log(tokenResponse.data.access_token);
-      setToken(tokenResponse.data.access_token);
-
-      // gets playlist
-      axios('https://api.spotify.com/v1/playlists/37i9dQZF1DXcBWIGoYBM5M/tracks', {
-        method: 'GET',
+    const callAPI = async () => {
+      await axios('https://accounts.spotify.com/api/token', {
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization' : 'Bearer ' + token
-        }
-      }).then(playlistResponse => {
-        // console.log(playlistResponse.data.items[2].track.name);
-        console.log(playlistResponse.data.items);
-        setPlaylist(playlistResponse.data.items);
-      })
-    });
+          'Content-Type' : 'application/x-www-form-urlencoded',
+          'Authorization' : 'Basic ' + btoa(CLIENT_ID + ':' + CLIENT_SECRET)      
+        },
+        data: 'grant_type=client_credentials',
+        method: 'POST'
+      }).then((tokenResponse) => {
+        console.log(tokenResponse.data.access_token);
+        setToken(tokenResponse.data.access_token);
+        // gets playlist
+        axios('https://api.spotify.com/v1/playlists/37i9dQZF1DXcBWIGoYBM5M/tracks', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization' : 'Bearer ' + tokenResponse.data.access_token
+          }
+        }).then((playlistResponse) => {
+          console.log(playlistResponse);
+          setPlaylist(playlistResponse.data.items);
+        })
+      });
+    }
+    callAPI().catch(console.error);
   }, []);
+
+
 
   return (
     <div className="App">
       <Header />
-      <Card />
+      <Card playlist={playlist}/>
       <NavBar />
       <List playlist={playlist} />
     </div>
@@ -52,5 +55,4 @@ function App() {
 
 export default App
 
-// display: total number of items, playlistResponse.data.total
 // filter by: genres
