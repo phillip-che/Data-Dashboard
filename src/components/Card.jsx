@@ -37,7 +37,6 @@ const Card = ({playlist}) => {
                 totalDuration: convert(getTotalDuration()),
                 avgDuration: convert(getAvgDuration())
             });
-            console.log(playlistData);    
         }
     }, [playlist]);
 
