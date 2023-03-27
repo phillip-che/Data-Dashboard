@@ -60,7 +60,14 @@ function App() {
           .includes(searchValue.toLowerCase())
       );
 
-      const filteredData = [...new Set([...filteredSongs, ...filteredAlbum])];
+      const filteredArtist = Object.keys(playlist).filter((item) =>
+        Object.values(playlist[item].track.artists[0])
+          .join("")
+          .toLowerCase()
+          .includes(searchValue.toLowerCase())
+      );
+
+      const filteredData = [...new Set([...filteredSongs, ...filteredAlbum, ...filteredArtist])];
       setFilteredResults(getSongs(filteredData));
     } else {
       setFilteredResults(playlist);

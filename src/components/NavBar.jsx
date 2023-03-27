@@ -7,7 +7,7 @@ const NavBar = ({searchItems}) => {
             <FaSearch />
             <input 
             type="text" 
-            placeholder="Songs or Albums"
+            placeholder="Search artist, song, or album"
             onChange={(inputString) => searchItems(inputString.target.value)} 
             />
         </div>
