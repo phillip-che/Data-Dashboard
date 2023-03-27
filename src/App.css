@@ -39,18 +39,19 @@ li {
 
 .Cards {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 2rem;
+  padding-left: 50px;
+  padding-bottom: 25px;
 }
 
 .search {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   padding: 0.4rem 1rem;
-  position: sticky;
+  padding-left: 50px;
   top: 0;
   transition: 0.3s ease-in-out;
   border-radius: 2rem;
@@ -60,11 +61,47 @@ li {
 .track-list {
   display: flex;
   align-items: center;
-  height: 6vh;
+  height: 7vh;
 }
 
 .song {
-  display: flex;
+  display: grid;
   align-items: center;
   gap: 1rem;
+  margin: 0 2rem;
+  padding: 0.5rem 1rem;
+  grid-template-columns: 0.3fr 11fr 15fr 1fr;
+}
+
+.header-row {
+  display: grid;
+  grid-template-columns: 0.01fr 2fr 0.07fr;
+  margin: 1rem 0 0;
+  position: sticky;
+  top: 1vh;
+  padding: 1rem 3rem;
+  transition: 0.3s ease-in-out;
+}
+
+.artists {
+  display: flex;
+  align-items: center;
+  font-size: 90%;
+}
+
+.name {
+  display: flex;
+}
+ 
+.album {
+  display: flex;
+}
+
+.Header {
+  padding-left: 40px;
+  display: flex;
+}
+
+input {
+  width: 325px;
 }
