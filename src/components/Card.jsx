@@ -43,27 +43,27 @@ const Card = ({playlist}) => {
     return (
         <div className="Cards">
             <div className="card-count">
-                <div>
+                <h3>
                     Songs
-                </div>
+                </h3>
                 <div>
                     {playlistData.numSongs}
                 </div>
             </div>
 
             <div className="card-duration">
-                <div>
+                <h3>
                    Total Duration 
-                </div>
+                </h3>
                 <div>
                 {playlistData.totalDuration[0]} hr {playlistData.totalDuration[1]} min
                 </div>
             </div>
 
             <div className="card-avg">
-                <div>
-                    Average Song Time
-                </div>
+                <h3>
+                    Average Duration
+                </h3>
                 <div>
                     {playlistData.avgDuration[0]} min {playlistData.avgDuration[1]} sec
                 </div> 

@@ -14,40 +14,20 @@
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 
 li {
   list-style: none;  
-}
-
-.Cards {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  position: absolute;
-  gap: 2rem;
-  padding-left: 125px;
-  top: 125px;
 }
 
 .search {
   display: flex;
   justify-content: left;
   align-items: center;
-  padding-left: 125px;
   transition: 0.3s ease-in-out;
   border-radius: 2rem;
   gap: 0.5rem;
   position: absolute;
-  top: 200px;
-}
-
-.track-list {
-  display: flex;
-  align-items: center;
-  height: 7vh;
+  top: 255px;
 }
 
 .song {
@@ -57,16 +37,32 @@ li {
   margin: 0 2rem;
   padding: 0.5rem 1rem;
   grid-template-columns: 0.3fr 11fr 15fr 1fr;
+  height: 5vh;
+}
+
+.song:hover {
+  background-color: rgba(0, 0, 0, 0.19);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 200px;
+  justify-content: top;
+  transition: 0.3s ease-in-out;
 }
 
 .header-row {
   display: grid;
   grid-template-columns: 0.01fr 2fr 0.07fr;
-  margin: 1rem 0 0;
+  margin: 4rem 0 0;
   position: sticky;
-  top: 1vh;
+  top: .01vh;
   padding: 1rem 3rem;
+  margin-bottom: .5rem;
   transition: 0.3s ease-in-out;
+  border-bottom: solid 1px grey;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .artists {
@@ -75,14 +71,10 @@ li {
   font-size: 90%;
 }
 
-.name {
+.name, .album {
   display: flex;
 }
  
-.album {
-  display: flex;
-}
-
 .Header {
   display: flex;
   position: absolute;
@@ -90,9 +82,37 @@ li {
 }
 
 input {
-  width: 325px;
+  width: 340px;
+  border: 1px solid #ccc;
+  padding: 4px;
+  font-size: 15px;
+  transition: width 0.2s;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.19);
+  border-color: rgba(0, 0, 0, 0.19);
 }
 
-.list {
-  padding-top: 200px;
+input:focus {
+  width: 675px;
+}
+
+.Cards {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: absolute;
+  gap: 2rem;
+  top: 125px;
+}
+
+.card-count, .card-duration, .card-avg {
+  width: 200px;
+  border-radius: 5px;
+  box-shadow: 0 0px 0px 0 rgba(11, 64, 240, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
+  transition: 0.3s ease-in-out;
+  padding: 0.5rem;
+}
+
+.card-count:hover, .card-duration:hover, .card-avg:hover {
+  box-shadow: 0 0px 0px 0 rgba(11, 64, 240, 0.2), 0 2px 20px 0 #646cffaa;
 }

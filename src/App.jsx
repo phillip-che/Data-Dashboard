@@ -72,7 +72,6 @@ function App() {
     } else {
       setFilteredResults(playlist);
     }
-    console.log(filteredResults);
   }
 
   const getSongs = (keys) => {
