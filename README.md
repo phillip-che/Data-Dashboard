@@ -1,6 +1,6 @@
 # Web Development Project 5 - *Data Dashboard*
 
-Submitted by: **Phillip CHe**
+Submitted by: **Phillip Che**
 
 This web app: **Spotify Top 50 Data Dashboard**
 
