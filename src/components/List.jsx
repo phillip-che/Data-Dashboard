@@ -21,7 +21,8 @@ const List = ({playlist}) => {
                 <li className="track-list" key={song.track.name}>
                     <Song 
                     image={song.track.album.images[2].url}
-                    name={song.track.name} 
+                    name={song.track.name}
+                    artists={song.track.artists} 
                     album={song.track.album.name} 
                     duration={convert(song.track.duration_ms)}
                     />

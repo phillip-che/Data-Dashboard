@@ -62,3 +62,9 @@ li {
   align-items: center;
   height: 6vh;
 }
+
+.song {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

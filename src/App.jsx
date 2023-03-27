@@ -46,7 +46,6 @@ function App() {
     console.log(searchValue);
     setSearchInput(searchValue);
     if (searchValue !== "") {
-      // console.log(Object.values(playlist[0].track.album.name));
       const filteredSongs = Object.keys(playlist).filter((item) =>
         Object.values(playlist[item].track.name)
           .join("")
