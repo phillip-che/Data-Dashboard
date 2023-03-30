@@ -84,9 +84,10 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Card playlist={playlist}/>
-      <NavBar searchItems={searchItems} />
+      <div className="top-section">
+        <Card playlist={playlist}/>
+        <NavBar searchItems={searchItems} />
+      </div>
       <List playlist={
         (searchInput.length > 0) ? filteredResults : playlist 
       } />

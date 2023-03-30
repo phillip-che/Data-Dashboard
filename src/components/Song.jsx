@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const Song = ({image, name, artists, album, duration}) => {
     return (
         <div>

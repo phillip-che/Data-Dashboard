@@ -19,7 +19,7 @@ const List = ({ playlist }) => {
     <div className="list">
       <div className="header-row">
         <div className="col">TITLE</div>
-        <div className="col">ALBUM</div>
+        <div className="col-album">ALBUM</div>
         <div className="col"><AiFillClockCircle /></div>
       </div>
       {playlist &&

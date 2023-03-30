@@ -1,6 +1,5 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  margin-left: 275px;
   padding: 2rem;
   text-align: center;
 }
@@ -27,7 +26,7 @@ li {
   border-radius: 2rem;
   gap: 0.5rem;
   position: absolute;
-  top: 255px;
+  top: 450px;
 }
 
 .song {
@@ -47,22 +46,27 @@ li {
 .list {
   display: flex;
   flex-direction: column;
-  margin-top: 200px;
+  margin-top: 400px;
   justify-content: top;
   transition: 0.3s ease-in-out;
 }
 
 .header-row {
   display: grid;
-  grid-template-columns: 0.01fr 2fr 0.07fr;
+  grid-template-columns: 0fr 3fr 0.1fr;
   margin: 4rem 0 0;
   position: sticky;
-  top: .01vh;
+  top: 0vh;
   padding: 1rem 3rem;
   margin-bottom: .5rem;
   transition: 0.3s ease-in-out;
   border-bottom: solid 1px grey;
   background-color: rgba(0, 0, 0, 0.6);
+  width: 1840px;
+}
+
+.col-album {
+  margin-left: -175px;
 }
 
 .artists {
@@ -79,6 +83,8 @@ li {
   display: flex;
   position: absolute;
   top: 0;
+  margin-left: -50px;
+  font-size: larger;
 }
 
 input {
@@ -102,7 +108,8 @@ input:focus {
   align-items: center;
   position: absolute;
   gap: 2rem;
-  top: 125px;
+  top: 175px;
+  transition: 0.3s ease-in-out;
 }
 
 .card-count, .card-duration, .card-avg {
@@ -110,9 +117,29 @@ input:focus {
   border-radius: 5px;
   box-shadow: 0 0px 0px 0 rgba(11, 64, 240, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
   transition: 0.3s ease-in-out;
-  padding: 0.5rem;
+  padding: 4rem;
+  font-size: larger;
 }
 
 .card-count:hover, .card-duration:hover, .card-avg:hover {
   box-shadow: 0 0px 0px 0 rgba(11, 64, 240, 0.2), 0 2px 20px 0 #646cffaa;
+}
+
+.link {
+  color: #FFF;
+  transition: all 0.2s ease-in;
+}
+
+.link:hover {
+   color: #FFF;
+   text-shadow: 0px 0px 30px #646cffaa;
+   text-decoration:underline;
+   transition: all 0.2s ease-in;
+}
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  margin-left: 800px;
 }

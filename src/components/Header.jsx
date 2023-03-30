@@ -4,7 +4,8 @@ const Header = () => {
     return (
         <div className="Header">
             <img className="logo" src={logo} />
-            <h1>Spotify Top 50</h1>
+            <h1>Spotify</h1>
+            <h2>Top 50</h2>
         </div>
     )
 }
