@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import axios from 'axios'
-import Header from './components/Header'
 import Card from './components/Card'
 import List from './components/List'
 import NavBar from './components/NavBar'
@@ -10,10 +9,10 @@ const CLIENT_SECRET = import.meta.env.VITE_APP_CLIENT_SECRET
 
 function App() {
 
-  const [token, setToken] = useState('');
   const [playlist, setPlaylist] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [followers, setFollowers] = useState(0);
 
   useEffect(() => {
     const callAPI = async () => {
@@ -26,16 +25,16 @@ function App() {
         method: 'POST'
       }).then((tokenResponse) => {
         console.log(tokenResponse.data.access_token);
-        setToken(tokenResponse.data.access_token);
         // gets playlist
-        axios('https://api.spotify.com/v1/playlists/37i9dQZF1DXcBWIGoYBM5M/tracks', {
+        axios('https://api.spotify.com/v1/playlists/37i9dQZF1DXcBWIGoYBM5M', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             'Authorization' : 'Bearer ' + tokenResponse.data.access_token
           }
         }).then((playlistResponse) => {
-          setPlaylist(playlistResponse.data.items);
+          setPlaylist(playlistResponse.data.tracks.items);
+          setFollowers(playlistResponse.data.followers.total);
         })
       });
     }
@@ -85,7 +84,7 @@ function App() {
   return (
     <div className="App">
       <div className="top-section">
-        <Card playlist={playlist}/>
+        <Card playlist={playlist} followers={followers}/>
         <NavBar searchItems={searchItems} />
       </div>
       <List playlist={

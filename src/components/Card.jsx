@@ -1,7 +1,7 @@
 // display cards showing total number of songs, total duration, and average song length
 import { useState, useEffect } from "react";
 
-const Card = ({ playlist }) => {
+const Card = ({ playlist, followers }) => {
   const [playlistData, setPlaylistData] = useState({
     numSongs: 0,
     totalDuration: [],
@@ -43,9 +43,9 @@ const Card = ({ playlist }) => {
     <div>
       {playlistData.numSongs > 0 ? (
         <div className="Cards">
-          <div className="card-count">
-            <h3>Songs</h3>
-            <div>{playlistData.numSongs}</div>
+          <div className="followers">
+            <h3>Followers</h3>
+            <div>{followers.toLocaleString()}</div>
           </div>
 
           <div className="card-duration">
@@ -66,8 +66,8 @@ const Card = ({ playlist }) => {
         </div>
       ) : (
         <div className="Cards">
-          <div className="card-count">
-            <h3>Songs</h3>
+          <div className="followers">
+            <h3>Followers</h3>
           </div>
 
           <div className="card-duration">

@@ -73,6 +73,8 @@ li {
   display: flex;
   align-items: center;
   font-size: 90%;
+  color: #ffffff98;
+  text-decoration: none;
 }
 
 .name, .album {
@@ -85,6 +87,7 @@ li {
   top: 0;
   margin-left: -50px;
   font-size: larger;
+  color: #FFF;
 }
 
 input {
@@ -112,7 +115,7 @@ input:focus {
   transition: 0.3s ease-in-out;
 }
 
-.card-count, .card-duration, .card-avg {
+.followers, .card-duration, .card-avg {
   width: 200px;
   border-radius: 5px;
   box-shadow: 0 0px 0px 0 rgba(11, 64, 240, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
@@ -121,13 +124,12 @@ input:focus {
   font-size: larger;
 }
 
-.card-count:hover, .card-duration:hover, .card-avg:hover {
+.followers:hover, .card-duration:hover, .card-avg:hover {
   box-shadow: 0 0px 0px 0 rgba(11, 64, 240, 0.2), 0 2px 20px 0 #646cffaa;
 }
 
 .link {
   color: #FFF;
-  transition: all 0.2s ease-in;
 }
 
 .link:hover {
@@ -142,4 +144,22 @@ input:focus {
   flex-direction: column;
   margin-top: 100px;
   margin-left: 800px;
+}
+
+.song-details {
+  display: flex;
+  align-items: center;
+  margin: 400px;
+  font-size: x-large;
+  margin-left:550px;
+}
+
+.table {
+  margin-left: 50px;
+  text-align: left;
+  border-spacing: 25px 0;
+}
+
+.album-cover {
+  width: 40%;
 }

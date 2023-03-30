@@ -31,6 +31,7 @@ const List = ({ playlist }) => {
               artists={song.track.artists}
               album={song.track.album.name}
               duration={convert(song.track.duration_ms)}
+              songID={song.track.id}
             />
           </li>
         ))}
