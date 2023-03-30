@@ -4,6 +4,7 @@ import axios from 'axios'
 import Card from './components/Card'
 import List from './components/List'
 import NavBar from './components/NavBar'
+import PieChart from './components/PieChart'
 const CLIENT_ID = import.meta.env.VITE_APP_CLIENT_ID
 const CLIENT_SECRET = import.meta.env.VITE_APP_CLIENT_SECRET
 
@@ -13,6 +14,8 @@ function App() {
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [followers, setFollowers] = useState(0);
+  const [artistIDs, setArtistIDs] = useState([]);
+  const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     const callAPI = async () => {
@@ -24,7 +27,7 @@ function App() {
         data: 'grant_type=client_credentials',
         method: 'POST'
       }).then((tokenResponse) => {
-        console.log(tokenResponse.data.access_token);
+
         // gets playlist
         axios('https://api.spotify.com/v1/playlists/37i9dQZF1DXcBWIGoYBM5M', {
           method: 'GET',
@@ -35,7 +38,27 @@ function App() {
         }).then((playlistResponse) => {
           setPlaylist(playlistResponse.data.tracks.items);
           setFollowers(playlistResponse.data.followers.total);
+          playlistResponse.data.tracks.items.forEach((item) => {
+            let artistID = item.track.artists[0].id;
+            if(!artistIDs.includes(artistID)) {
+              setArtistIDs((artistIDs) => [...artistIDs, artistID]);
+            }
+          });
         })
+
+        console.log(artistIDs);
+
+        // get genres
+        // axios(`https://api.spotify.com/v1/playlists/https://api.spotify.com/v1/artists?ids=${artistIDs.join("")}`, {
+        //   method: 'GET',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //     'Authorization' : 'Bearer ' + tokenResponse.data.access_token
+        //   }
+        // }).then((artistsResponse) => {
+        //   console.log(artistsResponse);
+        // })
+        
       });
     }
     callAPI().catch(console.error);
@@ -83,6 +106,9 @@ function App() {
 
   return (
     <div className="App">
+      <div className="chart">
+        <PieChart />
+      </div>
       <div className="top-section">
         <Card playlist={playlist} followers={followers}/>
         <NavBar searchItems={searchItems} />
