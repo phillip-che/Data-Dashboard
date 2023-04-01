@@ -46,7 +46,7 @@ li {
 .list {
   display: flex;
   flex-direction: column;
-  margin-top: 400px;
+  /* margin-top: 400px; */
   justify-content: top;
   transition: 0.3s ease-in-out;
 }
@@ -162,4 +162,10 @@ input:focus {
 
 .album-cover {
   width: 40%;
+}
+
+.chart {
+  display: flex;
+  align-items: center;
+  margin-left: 1250px;
 }

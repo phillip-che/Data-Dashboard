@@ -4,7 +4,7 @@ import axios from "axios";
 import Card from "./components/Card";
 import List from "./components/List";
 import NavBar from "./components/NavBar";
-import PieChart from "./components/PieChart";
+import GenreChart from "./components/GenreChart";
 const CLIENT_ID = import.meta.env.VITE_APP_CLIENT_ID;
 const CLIENT_SECRET = import.meta.env.VITE_APP_CLIENT_SECRET;
 
@@ -14,10 +14,11 @@ function App() {
   const [searchInput, setSearchInput] = useState("");
   const [followers, setFollowers] = useState(0);
   const [artistIDs, setArtistIDs] = useState([]);
-  const [genres, setGenres] = useState([{}]);
+  const [genres, setGenres] = useState(null);
 
   useEffect(() => {
     const callAPI = async () => {
+      const artists = [];
       await axios("https://accounts.spotify.com/api/token", {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -36,6 +37,7 @@ function App() {
         }).then((playlistResponse) => {
           setPlaylist(playlistResponse.data.tracks.items);
           setFollowers(playlistResponse.data.followers.total);
+
           playlistResponse.data.tracks.items.forEach((item) => {
             let artistID = item.track.artists[0].id;
             if (!artistIDs.includes(artistID)) {
@@ -56,16 +58,24 @@ function App() {
               },
             }
           ).then((artistsResponse) => {
-            const genreList = {};
+            const data = {};
+            const genreList = [];
             artistsResponse.data.artists.forEach((artist) => {
               artist.genres.forEach((genre) => {
-                genreList[genre] = genreList[genre] ? genreList[genre] + 1 : 1;
+                data[genre] = data[genre] ? data[genre] + 1 : 1;
               });
             });
+            for (const genre in data) {
+              if(data[genre] > 1) {
+                genreList.push({
+                  "name": genre,
+                  "count": data[genre]
+                })
+              }
+            }
             setGenres(genreList);
           });
         };
-        console.log(genres);
         getGenres().catch(console.error);
       });
     };
@@ -117,7 +127,7 @@ function App() {
   return (
     <div className="App">
       <div className="chart">
-        <PieChart genres={genres} />
+        <GenreChart genres={genres} />
       </div>
       <div className="top-section">
         <Card playlist={playlist} followers={followers} />
