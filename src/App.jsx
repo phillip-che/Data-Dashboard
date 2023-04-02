@@ -40,43 +40,43 @@ function App() {
 
           playlistResponse.data.tracks.items.forEach((item) => {
             let artistID = item.track.artists[0].id;
-            if (!artistIDs.includes(artistID)) {
-              setArtistIDs((artistIDs) => [...artistIDs, artistID]);
+            if (!artists.includes(artistID)) {
+              artists.push(artistID);
             }
-          });
-        });
-
-        // get genres
-        const getGenres = async () => {
-          await axios(
-            `https://api.spotify.com/v1/artists?ids=${artistIDs.join("%2C")}`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + tokenResponse.data.access_token,
-              },
-            }
-          ).then((artistsResponse) => {
-            const data = {};
-            const genreList = [];
-            artistsResponse.data.artists.forEach((artist) => {
-              artist.genres.forEach((genre) => {
-                data[genre] = data[genre] ? data[genre] + 1 : 1;
-              });
-            });
-            for (const genre in data) {
-              if(data[genre] > 1) {
-                genreList.push({
-                  "name": genre,
-                  "count": data[genre]
-                })
+          })
+        }).then(() => {
+          setArtistIDs(artists);
+          const getGenres = async () => {
+            await axios(
+              `https://api.spotify.com/v1/artists?ids=${artists.join("%2C")}`,
+              {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: "Bearer " + tokenResponse.data.access_token,
+                },
               }
-            }
-            setGenres(genreList);
-          });
-        };
-        getGenres().catch(console.error);
+            ).then((artistsResponse) => {
+              const data = {};
+              const genreList = [];
+              artistsResponse.data.artists.forEach((artist) => {
+                artist.genres.forEach((genre) => {
+                  data[genre] = data[genre] ? data[genre] + 1 : 1;
+                });
+              });
+              for (const genre in data) {
+                if(data[genre] > 1) {
+                  genreList.push({
+                    "name": genre,
+                    "count": data[genre]
+                  })
+                }
+              }
+              setGenres(genreList);
+            });
+          };
+          getGenres().catch(console.error);
+        });        
       });
     };
     callAPI().catch(console.error);
@@ -126,7 +126,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="chart">
+      <div className={genres ? "chart-rendered" : "chart-loading"}>
         <GenreChart genres={genres} />
       </div>
       <div className="top-section">

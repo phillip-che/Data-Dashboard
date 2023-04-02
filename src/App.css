@@ -164,8 +164,12 @@ input:focus {
   width: 40%;
 }
 
-.chart {
+.chart-rendered {
   display: flex;
   align-items: center;
   margin-left: 1250px;
+}
+
+.chart-loading {
+  margin-bottom: 416px;
 }
